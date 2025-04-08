@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'index.html'  # Adjust if you want more triggers
+      - 'index.html'
 
 permissions:
   contents: read
@@ -21,11 +21,10 @@ jobs:
       - name: Setup GitHub Pages
         uses: actions/configure-pages@v3
 
-      - name: Upload artifact for GitHub Pages
+      - name: Upload artifact
         uses: actions/upload-pages-artifact@v1
         with:
-          path: '.'  # This uploads all files in your repo (including index.html)
+          path: '.'  # Adjust if your files are in a subfolder
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
-
