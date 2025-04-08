@@ -10,25 +10,22 @@ permissions:
   contents: read
   pages: write
   id-token: write
-  actions: write 
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
-      - name: Checkout code
+      - name: Checkout
         uses: actions/checkout@v4
-
-      - name: Setup GitHub Pages
+      - name: Setup Pages
         uses: actions/configure-pages@v3
-
       - name: Upload artifact
-        uses: actions/upload-artifact@v4.6.2
+        uses: actions/upload-pages-artifact@v2
         with:
-          path: '.'  # Adjust if your files are in a subfolder
-      - name: Configure GitHub Pages environment
-        id: pages
-        uses: actions/configure-pages@v3
-
+          path: '.'
       - name: Deploy to GitHub Pages
+        id: deployment
         uses: actions/deploy-pages@v2
