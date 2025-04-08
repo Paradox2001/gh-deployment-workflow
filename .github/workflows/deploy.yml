@@ -27,7 +27,7 @@ jobs:
           echo "No build needed for raw HTML"
 
       - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v2
+        uses: actions/upload-pages-artifact@v3
         with:
           path: .  # Deploy entire repository contents
           # or specify specific files:
