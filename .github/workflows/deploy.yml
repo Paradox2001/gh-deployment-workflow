@@ -10,6 +10,7 @@ permissions:
   contents: read
   pages: write
   id-token: write
+  actions: write 
 
 jobs:
   deploy:
@@ -25,6 +26,9 @@ jobs:
         uses: actions/upload-artifact@v4.6.2
         with:
           path: '.'  # Adjust if your files are in a subfolder
+      - name: Configure GitHub Pages environment
+        id: pages
+        uses: actions/configure-pages@v3
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
