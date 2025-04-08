@@ -18,6 +18,12 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Dummy step to ensure upload-artifact is available
+        uses: actions/upload-artifact@v3
+        with:
+          name: dummy
+          path: ./index.html
+
       - name: Setup Pages
         uses: actions/configure-pages@v3
 
