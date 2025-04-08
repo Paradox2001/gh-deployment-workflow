@@ -4,37 +4,33 @@ on:
   push:
     branches: [main]
     paths:
-      - 'index.html'  # Only trigger when index.html changes
+      - 'index.html'  # Only trigger on changes to index.html
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
 
       - name: Configure GitHub Pages
+        id: pages
         uses: actions/configure-pages@v3
 
       - name: Build static site (optional)
         run: |
-          # Add build commands here if needed
           echo "No build needed for raw HTML"
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: .  # Deploy entire repository contents
-          # or specify specific files:
-          # path: |
-          #   index.html
-          #   styles.css
-          #   assets/
+          path: .
+          name: github-pages
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
