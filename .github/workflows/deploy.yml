@@ -4,7 +4,7 @@ on:
   push:
     branches: [main]
     paths:
-      - 'index.html'  # Only trigger on changes to index.html
+      - 'index.html'  # Adjust if you want more triggers
 
 permissions:
   contents: read
@@ -18,19 +18,14 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Configure GitHub Pages
-        id: pages
+      - name: Setup GitHub Pages
         uses: actions/configure-pages@v3
 
-      - name: Build static site (optional)
-        run: |
-          echo "No build needed for raw HTML"
-
-      - name: Upload Pages artifact
-        uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact for GitHub Pages
+        uses: actions/upload-pages-artifact@v1
         with:
-          path: .
-          name: github-pages
+          path: '.'  # This uploads all files in your repo (including index.html)
 
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v2
+
